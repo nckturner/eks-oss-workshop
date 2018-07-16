@@ -1,7 +1,7 @@
 **a) For a gossip-based cluster, make sure the name ends with k8s.local**
 ```
 export NAME=myfirstcluster.k8s.local
-export KOPS_STATE_STORE=s3://example-com-state-store
+export KOPS_STATE_STORE=s3://kops-state-store
 ```
 **b) Note which availability zones are available to you**
 ```
