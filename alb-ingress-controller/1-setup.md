@@ -60,7 +60,7 @@ done
 Add the security groups to the ingress:
 ```
 $ sed s/SECURITY_GROUPS/$SGID/g echoserver-ingress-template.yaml  > ingress.yaml
-$ grep security-groups echoserver-ingress 
+$ grep security-groups ingress.yaml
     alb.ingress.kubernetes.io/security-groups: sg-2ea93d5e
 ```
 
