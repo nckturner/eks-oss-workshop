@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: echoserver
+  namespace: kube-system
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: pod
+    alb.ingress.kubernetes.io/security-groups: SECURITY_GROUPS
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: echoserver
+          servicePort: 80
