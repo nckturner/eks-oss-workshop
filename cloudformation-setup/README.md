@@ -49,6 +49,13 @@ Copy the cloudformation outputs into your kubeconfig file (replace the coorespon
 1. `EKSClusterEndpoint`
 1. `EKSClusterName`
 
+Copy the kubeconfig into the correct location:
+
+```
+mkdir ~/.kube
+cp kubeconfig ~/.kube/config
+```
+
 ## 3. Create Auth Mapping ConfigMap
 
 Copy `NodeInstanceRoleArn` into the aws-auth-cm.yaml file.
@@ -66,6 +73,11 @@ kubectl get nodes
 ```
 
 ## 4. Do Something Cool (profit?)
-
+```
+kubectl run -i --tty busybox --image=busybox --restart=Never
+```
 
 ## 5. Also, check out eksctl
+```
+git clone git@github.com:weaveworks/eksctl.git
+```
