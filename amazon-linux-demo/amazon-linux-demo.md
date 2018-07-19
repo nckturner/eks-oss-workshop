@@ -50,3 +50,9 @@ $ yum list --show-duplicates emacs
 $ yum upgrade emacs-nox
 $ emacs-nox
 ```
+
+## Extras allows us to bundle related software together
+```
+$ yum install httpd
+$ amazon-linux-extras install lamp-mariadb10.2-php7.2
+```
