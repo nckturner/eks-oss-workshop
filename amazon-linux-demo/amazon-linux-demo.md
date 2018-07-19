@@ -1,36 +1,29 @@
 ## Get on an Amazon Linux 2 Instance
 
-We'll hop onto an EKS instance that has been used today, Amazon Linux 2 powers EKS,
+We'll hop onto an EKS node that has been used today, Amazon Linux 2 powers EKS,
 so we have one available.
-
-
-## Check Boot Time Info
-```
-$ systemd-analyze
-$ systemd-analyze blame
-```
-
-## List available extras
-```
-$ amazon-linux-extras
-```
-## Enable Docker
-
-On later editions of Amazon Linux 2, the docker extra is pre-enabled
-```
-$ amazon-linux-extras enable docker
-```
-
-## Install and start Docker
-```
-$ sudo yum install docker
-$ sudo systemctl start docker
-```
 
 ## Pull down docker image of Amazon Linux 2
 Note: latest points to Amazon Linux 2
 ```
 $ sudo docker run -i -t amazonlinux:latest
+```
+
+## Show new System Release
+Previously, our system-release said "Amazon Linux release 2 (2017.12) LTS Release Candidate"
+```
+$ cat /etc/system-release
+```
+
+## Check updated versions of Python in core
+```
+$ python --version
+$ yum list --show-duplicates python3
+```
+
+## List Amazon Linux Extras
+```
+$ amazon-linux-extras
 ```
 
 ## Check version of emacs available in core
