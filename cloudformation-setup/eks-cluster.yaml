@@ -527,7 +527,7 @@ Outputs:
 
   EKSClusterEndpoint:
     Description: Endpoint for the EKS control plane.
-    Value: !GetAtt EKSCluster.CertificateAuthorityData
+    Value: !GetAtt EKSCluster.Endpoint
 
   EKSClusterArn:
     Description: Identifier for the EKS cluster.
