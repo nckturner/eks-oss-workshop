@@ -6,9 +6,9 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 80
-    targetPort: 8080
-    protocol: TCP
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
   selector:
     app: echoserver
 ---
@@ -25,8 +25,8 @@ spec:
         app: echoserver
     spec:
       containers:
-      - image: gcr.io/google_containers/echoserver:1.4
-        imagePullPolicy: Always
-        name: echoserver
-        ports:
-        - containerPort: 8080
+        - image: gcr.io/google_containers/echoserver:1.4
+          imagePullPolicy: Always
+          name: echoserver
+          ports:
+            - containerPort: 8080

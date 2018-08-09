@@ -1,9 +1,11 @@
 ## Deploy the echo server and ingress
+
 ```
 $ kubectl apply -f echoserver.yaml
 service/echoserver created
 deployment.extensions/echoserver created
 ```
+
 ```
 $ kubectl get pods -n kube-system
 NAME                                      READY     STATUS              RESTARTS   AGE
@@ -19,24 +21,33 @@ kube-proxy-rp2tv                          1/1       Running             0       
 ```
 
 ```
-$ kubectl apply -f ingress.yaml
-ingress.extensions/echoserver created
+$ kubectl apply -f echoserver-ingress.yaml
 ```
 
 ## Check the log now
-```
-[ALB-INGRESS] [kube-system/echoserver] [INFO]: Start ELBV2 creation.
-[ALB-INGRESS] [kube-system/echoserver] [INFO]: Completed ELBV2 creation. Name: 14b0b7b5-kubesystem-echose-d1ad | ARN: arn:aws:elasticloadbalancing:us-west-2:638386993804:loadbalancer/app/14b0b7b5-kubesystem-echose-d1ad/8d78772a9d7a1a10
-[ALB-INGRESS] [kube-system/echoserver] [INFO]: Start TargetGroup creation.
-[ALB-INGRESS] [kube-system/echoserver] [INFO]: Succeeded TargetGroup creation. ARN: arn:aws:elasticloadbalancing:us-west-2:638386993804:targetgroup/14b0b7b5-30529-HTTP-87d6ed5/1cca8650182ba58f | Name: 14b0b7b5-30529-HTTP-87d6ed5.
-[ALB-INGRESS] [kube-system/echoserver] [INFO]: Start Listener creation.
-[ALB-INGRESS] [kube-system/echoserver] [INFO]: Completed Listener creation. ARN: arn:aws:elasticloadbalancing:us-west-2:638386993804:listener/app/14b0b7b5-kubesystem-echose-d1ad/8d78772a9d7a1a10/f75228bfccc385fb | Port: 80 | Proto: HTTP.
-[ALB-INGRESS] [kube-system/echoserver] [INFO]: Start Rule creation.
-[ALB-INGRESS] [kube-system/echoserver] [INFO]: Completed Rule creation. Rule Priority: "1" | Condition: [{    Field: "path-pattern",    Values: ["/"]  }]
-```
 
+```
+ I0809 21:53:19.142047       1 loadbalancer.go:265] kube-system/echoserver: Start ELBV2 creation.
+ I0809 21:53:20.401836       1 loadbalancer.go:272] kube-system/echoserver: Completed ELBV2 creation. Name: 28dcb5c6-kubesystem-echose-d1ad | ARN: arn:aws:elasticloadbalancing:us-west-2:638386993804:loadbalancer/app/28dcb5c6-kubesystem-echose-d1ad/64a1b563ffcb7109
+I0809 21:53:20.401852       1 targetgroup.go:226] kube-system/echoserver: Start TargetGroup creation.
+I0809 21:53:20.402099       1 event.go:221] Event(v1.ObjectReference{Kind:"Ingress", Namespace:"kube-system", Name:"echoserver", UID:"a073dc72-9c1e-11e8-b0b9-06c32ed0ab7a", APIVersion:"extensions/v1beta1", ResourceVersion:"5793", FieldPath:""}): type: 'Normal' reason: 'CREATE' 28dcb5c6-kubesystem-echose-d1ad created
+I0809 21:53:21.197778       1 targetgroup.go:231] kube-system/echoserver: Succeeded TargetGroup creation. ARN: arn:aws:elasticloadbalancing:us-west-2:638386993804:targetgroup/28dcb5c6-04e19804a28966d29ab/8f2f8537ffbbc463 | Name: 28dcb5c6-04e19804a28966d29ab.
+I0809 21:53:21.197795       1 targetgroup.go:226] kube-system/echoserver: Start TargetGroup creation.
+I0809 21:53:21.198024       1 event.go:221] Event(v1.ObjectReference{Kind:"Ingress", Namespace:"kube-system", Name:"echoserver", UID:"a073dc72-9c1e-11e8-b0b9-06c32ed0ab7a", APIVersion:"extensions/v1beta1", ResourceVersion:"5793", FieldPath:""}): type: 'Normal' reason: 'CREATE' 28dcb5c6-04e19804a28966d29ab target group created
+I0809 21:53:21.742136       1 targetgroup.go:231] kube-system/echoserver: Succeeded TargetGroup creation. ARN: arn:aws:elasticloadbalancing:us-west-2:638386993804:targetgroup/28dcb5c6-04e19804a28966d29ab/8f2f8537ffbbc463 | Name: 28dcb5c6-04e19804a28966d29ab.
+I0809 21:53:21.742156       1 listener.go:167] kube-system/echoserver: Start Listener creation.
+I0809 21:53:21.742416       1 event.go:221] Event(v1.ObjectReference{Kind:"Ingress", Namespace:"kube-system", Name:"echoserver", UID:"a073dc72-9c1e-11e8-b0b9-06c32ed0ab7a", APIVersion:"extensions/v1beta1", ResourceVersion:"5793", FieldPath:""}): type: 'Normal' reason: 'CREATE' 28dcb5c6-04e19804a28966d29ab target group created
+I0809 21:53:21.774721       1 listener.go:172] kube-system/echoserver: Completed Listener creation. ARN: arn:aws:elasticloadbalancing:us-west-2:638386993804:listener/app/28dcb5c6-kubesystem-echose-d1ad/64a1b563ffcb7109/2ac263437d59f96c | Port: 80 | Proto: HTTP.
+I0809 21:53:21.774738       1 rule.go:125] kube-system/echoserver: Start Rule creation.
+I0809 21:53:21.774919       1 event.go:221] Event(v1.ObjectReference{Kind:"Ingress", Namespace:"kube-system", Name:"echoserver", UID:"a073dc72-9c1e-11e8-b0b9-06c32ed0ab7a", APIVersion:"extensions/v1beta1", ResourceVersion:"5793", FieldPath:""}): type: 'Normal' reason: 'CREATE' 80 listener created
+I0809 21:53:21.803202       1 rule.go:130] kube-system/echoserver: Completed Rule creation. Rule Priority: "1" | Condition: [{    Field: "path-pattern",    Values: ["/"]  }]
+I0809 21:53:21.803417       1 event.go:221] Event(v1.ObjectReference{Kind:"Ingress", Namespace:"kube-system", Name:"echoserver", UID:"a073dc72-9c1e-11e8-b0b9-06c32ed0ab7a", APIVersion:"extensions/v1beta1", ResourceVersion:"5793", FieldPath:""}): type: 'Normal' reason: 'CREATE' 1 rule created
+I0809 21:53:22.394366       1 loadbalancer.go:509] kube-system/echoserver: Modifying ELBV2 tags to [{    Key: "kubernetes.io/cluster/ferocious-outfit-1533847666",    Value: "owned"  },{    Key: "kubernetes.io/ingress-name",    Value: "echoserver"  },{    Key: "kubernetes.io/namespace",    Value: "kube-system"  }].
+I0809 21:53:22.410185       1 event.go:221] Event(v1.ObjectReference{Kind:"Ingress", Namespace:"kube-system", Name:"echoserver", UID:"a073dc72-9c1e-11e8-b0b9-06c32ed0ab7a", APIVersion:"extensions/v1beta1", ResourceVersion:"5793", FieldPath:""}): type: 'Normal' reason: 'MODIFY' 28dcb5c6-kubesystem-echose-d1ad tags modified
+```
 
 ## Get hostname of ALB
+
 ```
 $ kubectl -n kube-system describe ingress echoserver
 Name:             echoserver
@@ -71,5 +82,3 @@ x-forwarded-proto=http
 BODY:
 -no body in request-
 ```
-
-

@@ -3,7 +3,7 @@
   "Statement": [
     {
       "Effect": "Allow",
-      "Action": ["acm:DescribeCertificate", "acm:ListCertificates"],
+      "Action": ["acm:DescribeCertificate", "acm:ListCertificates", "acm:GetCertificate"],
       "Resource": "*"
     },
     {
@@ -14,9 +14,11 @@
         "ec2:CreateTags",
         "ec2:DeleteSecurityGroup",
         "ec2:DescribeInstances",
+        "ec2:DescribeInstanceStatus",
         "ec2:DescribeSecurityGroups",
         "ec2:DescribeSubnets",
         "ec2:DescribeTags",
+        "ec2:DescribeVpcs",
         "ec2:ModifyInstanceAttribute",
         "ec2:RevokeSecurityGroupIngress"
       ],
@@ -39,6 +41,7 @@
         "elasticloadbalancing:DescribeLoadBalancers",
         "elasticloadbalancing:DescribeLoadBalancerAttributes",
         "elasticloadbalancing:DescribeRules",
+        "elasticloadbalancing:DescribeSSLPolicies",
         "elasticloadbalancing:DescribeTags",
         "elasticloadbalancing:DescribeTargetGroups",
         "elasticloadbalancing:DescribeTargetGroupAttributes",
@@ -64,7 +67,12 @@
     },
     {
       "Effect": "Allow",
-      "Action": ["waf-regional:GetWebACLForResource"],
+      "Action": [
+        "waf-regional:GetWebACLForResource",
+        "waf-regional:GetWebACL",
+        "waf-regional:AssociateWebACL",
+        "waf-regional:DisassociateWebACL"
+      ],
       "Resource": "*"
     },
     {
@@ -75,9 +83,7 @@
     {
       "Effect": "Allow",
       "Action": [
-        "waf:GetWebACL",
-        "waf:AssociateWebACL",
-        "waf:DisassociateWebACL"
+        "waf:GetWebACL"
       ],
       "Resource": "*"
     }

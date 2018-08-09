@@ -7,12 +7,11 @@ metadata:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: pod
-    alb.ingress.kubernetes.io/security-groups: SECURITY_GROUPS
 spec:
   rules:
-  - http:
-      paths:
-      - path: /
-        backend:
-          serviceName: echoserver
-          servicePort: 80
+    - http:
+        paths:
+          - path: /
+            backend:
+              serviceName: echoserver
+              servicePort: 80
