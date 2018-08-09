@@ -14,11 +14,11 @@ $ cp alb-ingress-controller-template.yaml alb-mine.yaml
 ```
 
 Modify these fields in the `alb-mine.yaml`
-_ AWS_REGION
-_ CLUSTER\*NAME
 
-- AWS\*ACCESS_KEY_ID
-- AWS_SECRET_ACCESS_KEY
+- `AWS_REGION`
+- `CLUSTER_NAME`
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
 
 ```
 $ kubectl apply -f alb-mine.yaml
